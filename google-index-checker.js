@@ -11,6 +11,8 @@ const site = 'https://www.google.com/search?q=' // Google search query
 const urls = './urls.csv' // File containing all the urls to check
 const apiUrl = 'http://api.scraperapi.com/?api_key=' // ScraperAPI url
 const { apiKey } = require('./APIKEY') // ScraperAPI key
+const sitemaps = require('sitemap-stream-parser');
+
 
 ;(() => {
   const app = {
@@ -25,8 +27,21 @@ const { apiKey } = require('./APIKEY') // ScraperAPI key
         app.totalUrls = data.filter((url) => url.length !== 0).length
         app.getUrls()
       } else {
-        console.log(ck.yellow('No urls.csv file found.'))
-        process.exit()
+        var allUrls = [];
+        
+        // replace the <sitemap link> with the url to your sitemap, ie https://example.com/sitemap.xml
+        var urls1 = '<sitemap link>';
+        const writeStream = fs.createWriteStream('./urls.csv');
+        sitemaps.parseSitemaps(
+          urls1,
+          function (url) {
+            let row = url + '\n';
+                  writeStream.write(row);
+          },
+          () =>{ app.getUrls() }
+      
+          
+        )
       }
     },
 
@@ -53,7 +68,7 @@ const { apiKey } = require('./APIKEY') // ScraperAPI key
       const result = new Array(data.length)
 
       // Array with the max concurrent allow and fill each resolved promise
-      const promises = new Array(concurrent.data.concurrencyLimit).fill(Promise.resolve())
+      const promises = new Array(8).fill(Promise.resolve())
 
       // Recursive http request
       const chainNext = (promised) => {
