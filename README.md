@@ -5,7 +5,7 @@
   <h1>Google Indexation checker</h1>
 </div>
 
- Scaling Google Indexation Checks with Node.js
+ Scaling Google Indexation Checks with Node.js forked by Noah Learner of Two Octobers
 ---------------------------------------------------------------------------------------
 
 This scripts provides an accurate report on the current Google indexation status for a given url. It displays `Indexed` or `Not Indexed` on a `results.csv` file.
@@ -48,6 +48,9 @@ Depending on your plan you will have more or less concurrent request allowed, th
 
 You can use this file for testing: <a href='https://app.builtvisible.com/public/urls.csv'>urls.csv</a>
 
+#### Use a CSV or Sitemap to build Crawl List
+
+This fork allows you to either use a csv stored in same folder as the script or to use a sitemap as the source for the crawl list.  If you want to use the sitemap method then delete the urls.csv file (if it exists in the same folder) and add the url where the source sitemap lives on line 33 of the google-index-checker.js.
 
 Place the `urls.csv` file on the main folder.
 <img vspace='20' src="https://app.builtvisible.com/public/urls.jpg?">
