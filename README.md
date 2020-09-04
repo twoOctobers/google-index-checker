@@ -97,3 +97,4 @@ Scraperapi will not consider errors as requests.
 | **chalk** | Terminal string styling done right |
 | **csvtojson** | A tool concentrating on converting csv data to JSON with customised parser supporting |
 | **fs** | Node filesystem module |
+| **sitemap-stream-parser** | A tool that will recursively build a list of urls to crawl from a sitemap file (or sitemap index file). |
